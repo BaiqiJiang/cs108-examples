@@ -1,0 +1,21 @@
+<!-- pages/about.html-->
+<html>
+    <head>
+        <title>Our webpages</title>
+    </head>
+    <body>
+    <!-- navigation links -->
+    <header>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'schedule' %}">About</a>
+    </header>
+    <!-- This content block will be filled in by another template
+        which extends this base.html page.-->
+    {% block content %}
+    {% endblock %}
+    <hr>
+    This page was brought to you by baiqi@bu.edu
+        
+    </body>
+</html>
