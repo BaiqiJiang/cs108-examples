@@ -1,0 +1,39 @@
+<!-- creater a table display the profiles-->
+
+<h1>Welcome to Mini Facebook</h1>
+
+<br>
+<br>
+
+<table>
+    
+    <colgroup>
+                    
+        <col span="1" style='width: 10%;'>
+        <col span="1" style='width: 25%;'>
+        <col span="1" style='width: 25%;'>
+        <col span="1" style='width: 25%;'>
+
+    </colgroup>
+
+    <tr>
+                        
+        <th>Name</th>
+        <th>City</th>
+        <th>Email Address</th>
+        <th>Image</th>
+
+    </tr>
+    
+    {% for profile in profiles %}
+    <tr align="center">   <!-- align makes the text stays in the center of the cell -->
+        
+        <td>{{profile.first_name}} {{profile.last_name}}</td>
+        <td>{{profile.city}}</td>
+        <td>{{profile.email_address}}</td>
+        <td><img src="{{profile.image_url}}" width="400" height="400"></td>
+
+    </tr>
+    {% endfor %}
+
+</table>
