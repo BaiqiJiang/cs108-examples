@@ -13,6 +13,6 @@ class Profile(models.Model):
     image_url = models.URLField(blank=True)
 
     def __str__(self):
-        '''Return a string representation of this quote.'''
+        '''Return a string representation of these data attributes.'''
 
         return f'{self.first_name}' + ' ' + f'{self.last_name}' + ', ' + f'{self.city}' + ', ' + f'{self.email_address}'
