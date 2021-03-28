@@ -36,7 +36,7 @@ class UpdateProfileForm(forms.ModelForm):
         fields = ['first_name', 'last_name', 'birth_date', 'city', 'email_address', 'image_url']
 
 class CreateStatusMessageForm(forms.ModelForm):
-    '''Allow the user input status message.'''
+    '''Allow the user to input status message.'''
 
     timestamp = forms.TimeField(required=True)
 

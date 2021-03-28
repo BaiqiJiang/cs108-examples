@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,3 +25,5 @@ urlpatterns = [
     path('quotes/', include('quotes.urls')),
     path('mini_fb/', include('mini_fb.urls')),     ## NEW! LINK in URLS from our app
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
