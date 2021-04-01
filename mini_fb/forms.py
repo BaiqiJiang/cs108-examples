@@ -17,7 +17,7 @@ class CreateProfileForm(forms.ModelForm):
         '''additional data about this form'''
         
         model = Profile
-        fields = ['first_name', 'last_name', 'birth_date', 'city', 'email_address', 'image_url']
+        fields = ['first_name', 'last_name', 'birth_date', 'city', 'email_address', 'image_url',]
 
 class UpdateProfileForm(forms.ModelForm):
     '''A form to update an exist Profile object.'''
@@ -33,18 +33,19 @@ class UpdateProfileForm(forms.ModelForm):
         '''additional data about this form'''
         
         model = Profile
-        fields = ['first_name', 'last_name', 'birth_date', 'city', 'email_address', 'image_url']
+        fields = ['first_name', 'last_name', 'birth_date', 'city', 'email_address', 'image_url',]
 
 class CreateStatusMessageForm(forms.ModelForm):
     '''Allow the user to input status message.'''
 
     timestamp = forms.TimeField(required=True)
-
+    image_file = forms.ImageField(required=False)
+    
     class Meta:
         '''additional data about this form'''
         
         model = StatusMessage
-        fields = ['timestamp','message']
+        fields = ['timestamp','message','image_file',]
 
 
 

@@ -26,13 +26,13 @@
 
         </tr>
     
-        {% for profile in profiles %}
+        {% for user in profiles %}
         <tr align="center">     <!-- align makes the text stays in the center of the cell -->
         
-            <td><a href="{% url 'show_profile_page' profile.pk %}">{{profile.first_name}} {{profile.last_name}}</td>
-            <td>{{profile.city}}</td>
-            <td>{{profile.email_address}}</td>
-            <td><img src="{{profile.image_url}}" width="400" height="400"></td>
+            <td><a href="{% url 'show_profile_page' user.pk %}">{{user.first_name}} {{user.last_name}}</td>
+            <td>{{user.city}}</td>
+            <td>{{user.email_address}}</td>
+            <td><img src="{{user.image_url}}" width="400" height="400"></td>
 
         </tr>
         {% endfor %}

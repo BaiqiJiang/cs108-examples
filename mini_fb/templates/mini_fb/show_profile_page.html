@@ -16,7 +16,7 @@
     <hr>
     
     <h2>Post a status message</h2>
-    <form method="POST" action="{% url 'post_status' profile.pk%}"><!-- HTTP POST to send data to the server -->
+    <form method="POST" action="{% url 'post_status' profile.pk%}" enctype="multipart/form-data"><!-- HTTP POST to send data to the server -->
         {% csrf_token %}
         <!-- display the form context variable -->
         <!-- {{form}} -->
@@ -44,10 +44,16 @@
             <th>Time</th>
             <th>Message</th>
         </tr>
-        {% for profile in profile.get_status_messages %}
+        {% for st_msg in profile.get_status_messages %}
         <tr align="center">
-            <td>{{profile.timestamp}}</td>
-            <td>{{profile.message}}</td>
+            <td>{{st_msg.timestamp}}</td>
+            <td>
+                {{st_msg.message}}<br>
+                {% if st_msg.image_file %}
+                <img src='{{st_msg.image_file.url}}' style='max-width: 200;'>
+                {% endif %}
+            </td>
+            <td><a href="{% url 'delete_status' profile_pk=profile.pk status_pk=st_msg.pk %}">delete</a></td>
         </tr>
         {% endfor %}
     </table>

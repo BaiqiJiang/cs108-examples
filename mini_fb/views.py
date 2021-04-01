@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Profile
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Profile, StatusMessage
 from .forms import CreateProfileForm, UpdateProfileForm, CreateStatusMessageForm
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -58,7 +58,7 @@ def post_status_message(request, pk):
         # print(request.POST) # for debugging at the console
 
         # create the form object from the request's POST data
-        form = CreateStatusMessageForm(request.POST or None)
+        form = CreateStatusMessageForm(request.POST or None, request.FILES or None)
 
         if form.is_valid():
 
@@ -77,3 +77,36 @@ def post_status_message(request, pk):
     # redirect the user to the show_profile_page view
     url = reverse('show_profile_page', kwargs={'pk': pk})
     return redirect(url)
+
+class DeleteStatusMessageView(DeleteView):
+    '''Delete an exist status message.'''
+
+    template_name = "mini_fb/delete_status_form.html"
+    queryset = StatusMessage.objects.all()
+    # context_object_name = "profile"
+    
+    def get_context_data(self, **kwargs):
+        '''Return the context data (a dictionary) to be used in the template.'''
+
+        context = super().get_context_data(**kwargs)
+        st_msg = StatusMessage.objects.get(pk=self.kwargs['status_pk'])
+        context['Profiles'] = st_msg
+
+        return context
+    
+    def get_object(self):
+        '''Return the object that should be deleted.'''
+        # read the URL data values into variables
+        status_pk = self.kwargs['status_pk']
+        profile_pk = self.kwargs['profile_pk']
+        # find the StatusMessage object, and return it
+        st_msg_obj = StatusMessage.objects.get(pk=status_pk)
+
+        return st_msg_obj
+     
+    def get_success_url(self):
+        '''Return the URL to which we should be directed after the delete.'''
+        
+        profile_pk = self.kwargs['profile_pk']
+        return reverse('show_profile_page', kwargs={'pk':profile_pk})
+ 
