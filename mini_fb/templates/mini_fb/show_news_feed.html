@@ -1,0 +1,21 @@
+
+<td><a href="{% url 'show_profile_page' profile.pk %}">Back to {{profile.first_name}}'s profile page</a></td>
+
+<h1>{{profile.first_name}}'s News Feed</h1>
+
+<table>
+    {% for i in profile.get_news_feed %}
+    <tr align="center">
+        <td>{{i.timestamp}}</td>
+        <td>{{i.profile.first_name}} {{i.profile.last_name}}</td>
+        <td><img src="{{i.profile.image_url}}" width="40" height="40"></td>
+        <td>
+            {{i.message}}<br>
+            {% if i.image_file %}
+            <img src='{{i.image_file.url}}' style='max-width: 40;'>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+

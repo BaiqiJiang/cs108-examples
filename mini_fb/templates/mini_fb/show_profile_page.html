@@ -12,9 +12,38 @@
     <h3>Email: {{profile.email_address}}</h3>
     <h3>City: {{profile.city}}</h3>
     <h3>Birth Date: {{profile.birth_date}}</h3>
-    <a href="{% url 'update_profile' profile.pk %}">Edit this profile</a>
+    <a href="{% url 'update_profile' profile.pk %}">Edit this profile</a> | <a href="{% url 'news_feed' profile.pk %}">Show {{profile.first_name}} {{profile.last_name}}'s news feed</a> | <a href="{% url 'show_possible_friends' profile.pk %}">Find friends</a> 
     <hr>
+
+    <h2>{{profile.first_name}}'s friends</h2>
+        
+    {% if profile.get_friends %}
     
+    {% for user in profile.get_friends %}
+        <table>
+    
+            <colgroup>
+                    
+                <col span="1" style='width: 50%;'>
+                <col span="1" style='width: 50%;'>
+                
+            </colgroup>
+            
+            <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+            <td><a href="{% url 'show_profile_page' user.pk %}">{{user.first_name}} {{user.last_name}}</td>
+            <td><img src="{{user.image_url}}" width="40" height="40"></td>
+
+            </tr>
+        </table>
+    {% endfor %}
+    
+    {% else %}
+    {{profile.first_name}} doesn't have any friends.
+    {% endif %}
+
+    <hr>
+
     <h2>Post a status message</h2>
     <form method="POST" action="{% url 'post_status' profile.pk%}" enctype="multipart/form-data"><!-- HTTP POST to send data to the server -->
         {% csrf_token %}
@@ -29,6 +58,7 @@
         </tr>
         </table>
     </form>
+    <hr>
     
     <h2>Status Messages</h2>
     <table>

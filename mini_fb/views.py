@@ -46,6 +46,7 @@ class UpdateProfileView(UpdateView):
     model = Profile # which model to create
     form_class = UpdateProfileForm   # which form to use to create the Quote
     template_name = "mini_fb/update_profile_form.html"  # delegate the dispay to this template
+    context_object_name = "ProfileUpdate"
 
 def post_status_message(request, pk):
     '''
@@ -109,4 +110,31 @@ class DeleteStatusMessageView(DeleteView):
         
         profile_pk = self.kwargs['profile_pk']
         return reverse('show_profile_page', kwargs={'pk':profile_pk})
- 
+    
+class ShowNewsFeedView(DetailView):
+    ''' Show news feeds. '''
+
+    model = Profile                              # retrieve Profile objects from the database
+    template_name = "mini_fb/show_news_feed.html"      # delagate the display to this template
+    context_object_name = "profile"                    # use this variable name in the template
+
+class ShowPossibleFriendsView(DetailView):
+    ''' Show possible friends. '''
+
+    model = Profile
+    template_name = "mini_fb/show_possible_friends.html"
+    context_object_name = "prof"
+
+def add_friend(request, profile_pk, friend_pk):
+    '''The objective of this function is to process the add_friend request, to add a friend for a given profile.'''
+
+    # find the Profile object which is adding the friend, and store it into a variable
+    profile_obj_pk = Profile.objects.get(pk=profile_pk)
+    # find the Profile object of the friend to add, and store it into another variable
+    friend_obj_pk = Profile.objects.get(pk=friend_pk)
+    # add that friend’s Profile into the profile.friends object (using the method add)
+    profile_obj_pk.friends.add(friend_obj_pk)
+    # save the profile object.
+    profile_obj_pk.save()
+    # return to the show profile page
+    return redirect(reverse('show_profile_page', kwargs={'pk':profile_pk}))

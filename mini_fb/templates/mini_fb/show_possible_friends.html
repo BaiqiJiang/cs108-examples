@@ -1,0 +1,30 @@
+<td><a href="{% url 'show_profile_page' prof.pk %}">Back to {{prof.first_name}}'s profile page</a></td>
+
+<h1>Friends suggestions for {{prof.first_name}}</h1>
+
+
+<table>
+    {% for user in prof.get_friend_suggestions %}
+    <colgroup>
+                
+        <col span="1" style='width: 33%;'>
+        <col span="1" style='width: 33%;'>
+        <col span="1" style='width: 33%;'>
+            
+    </colgroup>
+        
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+    
+        <td><a href="{% url 'show_profile_page' user.pk %}">{{user.first_name}} {{user.last_name}}</td>
+        <td><img src="{{user.image_url}}" width="40" height="40"></td>
+        <td>
+            <form method='POST' action="{% url 'add_friend' profile_pk=prof.pk friend_pk=user.pk %}">
+            {% csrf_token %}
+            <input type='submit' name="Add friends" value="Add friends">
+            </form>
+        </td>
+    
+    </tr>
+    {% endfor %}
+</table>
+

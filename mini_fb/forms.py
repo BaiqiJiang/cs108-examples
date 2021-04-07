@@ -22,8 +22,6 @@ class CreateProfileForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     '''A form to update an exist Profile object.'''
    
-    first_name = forms.CharField(label="First Name", required=True)
-    last_name = forms.CharField(label="Last Name", required=True)
     birth_date = forms.CharField(label="Birth Date", required=True)
     city = forms.CharField(label="City", required=True)
     email_address = forms.CharField(label="Email", required=True)
@@ -33,7 +31,7 @@ class UpdateProfileForm(forms.ModelForm):
         '''additional data about this form'''
         
         model = Profile
-        fields = ['first_name', 'last_name', 'birth_date', 'city', 'email_address', 'image_url',]
+        fields = ['birth_date', 'city', 'email_address', 'image_url',]
 
 class CreateStatusMessageForm(forms.ModelForm):
     '''Allow the user to input status message.'''
