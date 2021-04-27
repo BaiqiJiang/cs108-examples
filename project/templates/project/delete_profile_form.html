@@ -1,0 +1,77 @@
+<!--
+    project/delete_profile_form.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for deleting profiles.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>Delete A Profile</title>  <!-- Provide a title for this html -->
+</head>
+
+<h1><i>Warning: Are you sure you want to delete this profile?</i></h1>
+<h1><i>This deletion cannot be restored!</i></h1>
+<h1><i>Any deletion of other people's profile is prohibited.</i></h1>
+<hr>
+<style>
+    body {
+      background-color:yellow;
+    }
+</style>
+
+<table>
+
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>Student Name: </td>
+        <td>{{profile.first_name}} {{profile.last_name}}</td>
+
+    </tr>
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>Student Current Grade: </td>
+        <td>{{profile.grade}}</td>
+
+    </tr>
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>Student Country: </td>
+        <td>{{profile.country}}</td>
+
+    </tr>
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>Student Email: </td>
+        <td>{{profile.email_address}}</td>
+
+    </tr>
+    
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>Registration Time: </td>
+        <td>{{profile.reg_time}}</td>
+
+    </tr>
+    
+</table>
+
+<p>
+
+</p>
+
+<table align="center">
+    <tr>
+        <td>
+            <form method='POST' align="center">                         
+            {% csrf_token %}
+            <input type='submit' name="Yes" value="Yes">
+            </form>
+        </td>
+        <td>
+            <form method='GET' action="{% url 'show_all_profiles'%}" align="center">
+            {% csrf_token %}
+            <input type='submit' name="No" value="No">
+            </form>
+        </td>
+    </tr>
+</table>

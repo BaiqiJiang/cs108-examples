@@ -1,0 +1,30 @@
+<!--
+    project/terms_of_use.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing the terms of use of this website.
+    Date: April, 2021                           
+-->
+
+<html>
+    <head>
+        <title>Terms of Use</title> <!-- Provide a title for this html -->
+    </head> 
+    <body>
+        <h1>Terms of Use</h1>
+        <hr>
+        <h2>1. First of all, this website is a non-profit website. Any attempt to get profit by this website is prohibited.</h2>
+        <h2>2. Secondly, the code of this website is available for all reference. However, plagiarism in any form is not allowed.</h2>
+        <h2 style="color: red">
+            3. ⚠ Important! Some pages of this website, including but not limited to: Student page, edit page and category page, use white on black background, or white on yellow background to attract users' attention.
+            Therefore, if you have photosensitive epilepsy syndrome, please use this website carefully. Once you feel any form of discomfort, you should call a doctor for help immediately.
+        </h2>
+        <h2>4. Finally, the pictures and materials used in this website are from Google Academic or Wikipedia. For any form of infringement, please contact me: baiqi@bu.edu</h2>
+        <h2>5. This website is completed under the guidance of Professor Aaron Stevens and TAs of CS108 at Boston University. Thank them for all their help!</h2>
+        <h2>
+            6. After you have read the above terms carefully, if you agree to abide by the above terms, please click "I agree" below to return to the main page. 
+            If you don't agree, well, sorry, we forgot to prepare that option, which means you can only agree if you want to use our website.
+            If you are dissatisfied, please click the "×" in the upper right corner of the browser to vent your anger, or <a style="color: black" href="{% url 'comments' %}">write comments</a> to us - but we many not accept it. Have a nice day.
+        </h2>
+        <h2><a style="color: black" href="{% url 'home_page' %}">I agree!</a></h2>  <!-- Provide a link to go back -->
+    </body>
+</html>

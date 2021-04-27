@@ -1,0 +1,56 @@
+<!--
+    project/comments.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for writing comments and rate our website.
+    Date: April, 2021                           
+-->
+
+<h1 style="color:white"><i>Any suggestions and comments are very important to us!</i></h1>
+<h1 style="color:white"><i>Note: You can use this function only if you are a Boston University's student or faculty.</i></h1>
+<a style="color:white" href="{% url 'home_page' %}">Back to our main page</a>
+<hr>
+
+<html>
+    <head>
+        <title>Write Comments</title>
+    </head>
+    
+    <style>
+        body {
+          background-color:rgb(10, 163, 156);
+        }
+    </style>
+
+    <form action="https://cs-webapps.bu.edu/cgi-bin/util/formmailer.py">
+        <table style="color:white" align = "center">
+            <tr>
+                <td><b>Your name(optional):</b></td>
+                <td><input type="text" name="respondent_name"></td>
+            </tr>
+            <tr>
+                <td><b>If you give our website a score of 1 is the lowest and 5 is the highest, what do you think our website should be?</b></td>
+                <td>
+                    <input type="radio" name="Rate" value="1"> 1 - It's too bad<br>
+                    <input type="radio" name="Rate" value="2"> 2 - Just passable<br>
+                    <input type="radio" name="Rate" value="3"> 3 - Neutral<br>
+                    <input type="radio" name="Rate" value="4"> 4 - Good<br>
+                    <input type="radio" name="Rate" value="5"> 5 - Excellent<br>
+                </td>
+            </tr>
+            <tr>
+                <td>   
+                    <b>Please write your comments here:</b>
+                <td>
+                    <textarea name="comments" rows=5 cols=80></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="hidden" name="mailto" value="baiqi@bu.edu">
+                    <input type="submit" name="submit_button">
+                </td>
+            </tr>
+        </table>
+    </form>
+</html>

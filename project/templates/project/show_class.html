@@ -1,0 +1,56 @@
+<!--
+    project/show_class.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing a specific class.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>Class Page</title> <!-- Provide a title for this html -->
+</head>
+
+<h1 style="color:white">Class: {{class.class_name}}</h1>
+<a style="color:white" href="{% url 'home_page' %}">Back to our main page</a> |
+<a style="color:white" href="{% url 'show_all_phyla' %}">Back to showing all phyla page</a> |
+<hr>
+
+<style>
+    body {
+      background-color: black;
+    }
+</style>
+
+<table style="color:white">
+    
+    <colgroup>
+                
+        <col span="1" style='width: 10%;'>
+        <col span="1" style='width: 40%;'>
+        <col span="1" style='width: 25%;'>
+
+    </colgroup>
+
+    <tr align="center">
+        <th>Image</th>
+        <th>Introduction</th>
+        <th>Update This Class</th>
+        <th>Delete This Class</th>
+    </tr>
+
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>
+            {% if class.class_image %}
+            <img src='{{class.class_image}}' width="200" height="200">
+            {% else %}
+            This class has no image for now.
+            {% endif %}
+        </td>
+        <td>{{class.class_introduction}}</td>
+        
+        <td><a style="color:white" href="{% url 'update_class' phylum_pk=class.phylum.pk class_pk=class.pk %}">Update</a></td>
+        <td><a style="color:white" href="{% url 'delete_class' phylum_pk=class.phylum.pk class_pk=class.pk %}">Delete</a></td>
+        
+    </tr>
+
+</table>

@@ -1,0 +1,36 @@
+<!--
+    project/help.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing how to use this website.
+    Date: April, 2021                           
+-->
+
+<html>
+    <head>
+        <title>Help Me</title>  <!-- Provide a title for this html -->
+    </head>
+
+    <style>
+        body {
+          background-color:rgb(10, 163, 156);
+        }
+    </style>
+    
+    <body style="color:white">
+        <h1>Welcome to Biology Wikipedia!</h1>
+        <a style="color:white" href="{% url 'home_page' %}">Back to our main page</a>
+        <hr>
+        <h2>This is a website for BI 260 Marine Biology students.</h2>
+        <h2>To use this website, please create your own profile first.<br>
+        <a style="color:white" href="{% url 'create_profile' %}">Create profile now</a></h2>
+        <h2>Note: Unlike editing classes, you can upload a picture of your portrait directly instead of providing a troublesome link. If you don't upload your portrait, we will give you a lovely Boston Terrier by default!</h2>
+        <h2>After completing this step, you can view all the phyla, as well as those classes belong to them.<br>
+        <a style="color:white" href="{% url 'show_all_phyla' %}">Click here to view all phyla</a> | <a style="color:white" href="{% url 'show_all_phyla' %}">Click here to view all classes</a></h2>
+        <h2>Although only administrators can add or delete phyla (because this is usually difficult for students to edit), you can add or update any class you have learned.</h2>
+        <h2>To update a class, click "update" or "delete" buttons next to each class. To add a class, go into the phylum page and find the "add" button, click it. Note that you must create a profile first before you add or update anything.</h2>
+        <h2>Note: Since we want to make sure that the pictures you upload are academic, you must provide a link to the pictures instead of uploading them directly.</h2>
+        <h2>If you want to quit, just delete your profile. To do this, go to the profile page and click the "delete" button next to your profile.</h2>
+        <h2>If you change your email address and you want to update it, then go to the profile page and click the "update" button next to your profile.</h2>
+        <h2>Happy Editing!</h2>
+    </body>
+</html>

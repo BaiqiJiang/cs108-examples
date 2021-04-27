@@ -1,0 +1,73 @@
+<!--
+    project/show_phylum.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing a specific phylum.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>Phylum Page</title>  <!-- Provide a title for this html -->
+</head>
+
+<h1 style="color:white">Phylum: {{phylum.phylum_name}}</h1>
+<a style="color:white" href="{% url 'home_page' %}">Back to our main page</a> |
+<a style="color:white" href="{% url 'show_all_phyla' %}">Back to showing all phyla page</a> |
+<hr>
+
+<style>
+    body {
+      background-color: black;
+    }
+</style>
+
+<table style="color:white">
+
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td><img src="{{phylum.phylum_image}}" width="400" height="400"></td>
+        <td>{{phylum.phylum_introduction}}</td>
+        
+    </tr>
+    
+</table>
+
+<h1 style="color:white">Classes belong to Phylum {{phylum.phylum_name}}</h1>
+<a style="color:white" href="{% url 'create_class' %}">Create a new class</a> |
+<hr>
+
+{% if phylum.get_classes %}
+<table style="color:white">
+        
+    <colgroup>
+                
+        <col span="1" style='width: 33%;'>
+        <col span="1" style='width: 33%;'>
+        <col span="1" style='width: 33%;'>
+
+    </colgroup>
+
+    <tr align="center">
+        <th>Image</th>
+        <th>Class Name</th>
+        <th>Phylum Name</th>
+    </tr>
+
+    {% for i in phylum.get_classes %}
+    <tr align="center">
+        <td>
+            {% if i.class_image %}
+            <img src='{{i.class_image}}' width="200" height="200">
+            {% else %}
+            This class has no image for now.
+            {% endif %}
+        </td>
+        <td><a style="color:white" href="{% url 'show_class' phylum.pk i.pk %}">class {{i.class_name}}</a></td>
+        <td>phylum {{i.phylum.phylum_name}}</td>
+        <td><a style="color:white" href="{% url 'update_class' phylum_pk=phylum.pk class_pk=i.pk %}">Update</a></td>
+        <td><a style="color:white" href="{% url 'delete_class' phylum_pk=phylum.pk class_pk=i.pk %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}  <!-- If no classes belong to this phylum. display a message. -->
+<h2 style="color:white">Oops! This phylum has no classes yet... <a style="color:white" href="{% url 'create_class' %}">Add classes now!</a></h2>
+{% endif %}

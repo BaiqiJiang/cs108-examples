@@ -32,7 +32,6 @@ class ShowProfilePageView(DetailView):
         # return this context dictionary
         return context
 
-
 class CreateProfileView(CreateView):
     '''Create a new profile and store it in the database.'''
 
@@ -114,7 +113,7 @@ class DeleteStatusMessageView(DeleteView):
 class ShowNewsFeedView(DetailView):
     ''' Show news feeds. '''
 
-    model = Profile                              # retrieve Profile objects from the database
+    model = Profile                                    # retrieve Profile objects from the database
     template_name = "mini_fb/show_news_feed.html"      # delagate the display to this template
     context_object_name = "profile"                    # use this variable name in the template
 

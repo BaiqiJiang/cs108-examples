@@ -1,0 +1,55 @@
+<!--
+    project/show_all_profile.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing all the student profiles.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>All Students</title> <!-- Provide a title for this html -->
+</head>
+
+<h1 style="color:rgb(250, 250, 250)">Showing all students</h1>
+<a style="color:white" href="{% url 'home_page' %}">Back to our main page</a> |
+<a style="color:white" href="{% url 'create_profile' %}">Create new profile now</a>
+<hr>
+
+<style>
+    body {
+      background-image: url('https://wallpapercave.com/wp/unXHCFo.jpg');
+    }
+</style>
+
+<table>
+
+    <tr style="color:rgb(250, 250, 250)">
+        
+        <th>Portrait</th>
+        <th>Student Name</th>
+        <th>Current Grade</th>
+        <th>Student Email</th>
+        <th>Student Register Time</th>
+
+    </tr>
+
+    {% for i in profile %}
+    <tr align="center" style="color:rgb(250, 250, 250)">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>
+            {% if i.portrait %}
+            <img src='{{i.portrait.url}}' width="200" height="200">
+            {% else %}
+            <img src='https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Boston_University_Terriers_logo.svg/1200px-Boston_University_Terriers_logo.svg.png' width="100" height="100">
+            {% endif %}
+        </td>
+        <td><a style="color:white" href="{% url 'show_profile' i.pk %}">{{i.first_name}} {{i.last_name}}</a></td>
+        <td>{{i.grade}}</td>
+        <td>{{i.email_address}}</td>
+        <td>{{i.reg_time}}</td>
+        <td><a style="color:white" href="{% url 'update_profile' profile_pk=i.pk %}">Update</a></td>
+        <td><a style="color:white" href="{% url 'delete_profile' profile_pk=i.pk %}">Delete</a></td>
+
+    </tr>
+    {% endfor %}
+
+</table>

@@ -23,7 +23,8 @@ urlpatterns = [
     path('hw/', include('hello_world.urls')),  
     path('pages/', include('pages.urls')),         
     path('quotes/', include('quotes.urls')),
-    path('mini_fb/', include('mini_fb.urls')),     ## NEW! LINK in URLS from our app
+    path('mini_fb/', include('mini_fb.urls')), 
+    path('project/', include('project.urls')),    ## NEW! LINK in URLS from our app
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,50 @@
+<!--
+    project/show_all_phyla.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing all the phyla.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>All Phyla</title> <!-- Provide a title for this html -->
+</head>
+
+<h1 style="color:rgb(250, 250, 250)">Showing all phyla</h1>
+<a style="color:white" href="{% url 'home_page' %}">Back to our main page</a>
+<hr>
+
+<style>
+    body {
+      background-image: url('https://wallpapercave.com/wp/unXHCFo.jpg');
+    }
+</style>
+
+<table>
+    
+    <colgroup>
+                
+        <col span="1" style='width: 10%;'>
+        <col span="1" style='width: 25%;'>
+        <col span="1" style='width: 25%;'>
+
+    </colgroup>
+
+    <tr style="color:rgb(250, 250, 250)">
+                    
+        <th>Phylum Name</th>
+        <th>Introduction</th>
+        <th>Image</th>
+
+    </tr>
+
+    {% for i in phyla %}
+    <tr align="center" style="color:rgb(250, 250, 250)">     <!-- align makes the text stays in the center of the cell -->
+    
+        <td><a style="color:white" href="{% url 'show_phylum' i.pk %}">{{i.phylum_name}}</a></td>
+        <td>{{i.phylum_introduction}}</td>
+        <td><img src="{{i.phylum_image}}" width="400" height="400"></td>
+
+    </tr>
+    {% endfor %}
+
+</table>

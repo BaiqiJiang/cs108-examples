@@ -1,0 +1,102 @@
+<!--
+    project/show_profile.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for showing a specific student's profile.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>Profile Page</title>   <!-- Provide a title for this html -->
+</head>
+
+<h1 style="color:white">Showing student: {{profile.first_name}} {{profile.last_name}}'s page</h1>
+<a style="color:white" href="{% url 'home_page' %}">Back to our main page</a> |
+<a style="color:white" href="{% url 'show_all_profiles' %}">Back to showing all students page</a> |
+<a style="color:white" href="{% url 'update_profile' profile_pk=profile.pk %}">Update this profile</a> |
+<a style="color:white" href="{% url 'delete_profile' profile_pk=profile.pk %}">Delete this profile</a>
+<hr>
+
+<style>
+    body {
+      background-color: black;
+    }
+</style>
+
+
+<table style="color:white">
+
+    <tr align="center">     <!-- align makes the text stays in the center of the cell -->
+        
+        <td>Student Name: </td>
+        <td>{{profile.first_name}} {{profile.last_name}}</td>
+
+    </tr>
+    <tr align="center">     
+        
+        <td>Student Current Grade: </td>
+        <td>{{profile.grade}}</td>
+
+    </tr>
+    <tr align="center">     
+        
+        <td>Student Country: </td>
+        <td>{{profile.country}}</td>
+
+    </tr>
+    <tr align="center">    
+        
+        <td>Student Email: </td>
+        <td>{{profile.email_address}}</td>
+
+    </tr>
+    
+    <tr align="center">     
+        
+        <td>Registration Time: </td>
+        <td>{{profile.reg_time}}</td>
+
+    </tr>
+    
+</table>
+
+
+<h1 style="color:white">{{profile.first_name}} {{profile.last_name}}'s contributions, ordered by time:</h1>
+<hr>
+
+{% if profile.get_user_contrib_classes %}
+<table style="color:white">
+        
+    <colgroup>
+        
+        <col span="1" style='width: 25%;'>
+        <col span="1" style='width: 25%;'>
+        <col span="1" style='width: 25%;'>
+        <col span="1" style='width: 25%;'>
+
+    </colgroup>
+
+    <tr align="center">
+        <th>Edit Time</th>
+        <th>Image</th>
+        <th>Class Name</th>
+        <th>Phylum Name</th>
+    </tr>
+
+    {% for i in profile.get_user_contrib_classes %}
+    <tr align="center">
+        <td>{{i.update_time}}</td>
+        <td>
+            {% if i.class_image %}
+            <img src='{{i.class_image}}' width="200" height="200">
+            {% else %}
+            This class has no image for now.
+            {% endif %}
+        </td>
+        <td>class {{i.class_name}}</a></td>
+        <td>phylum {{i.phylum.phylum_name}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}  <!-- If the student has no contributions, display a message. -->
+<h2 style="color:white">Oops! This student hasn't contributed yet...</h2>
+{% endif %}

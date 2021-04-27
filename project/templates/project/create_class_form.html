@@ -1,0 +1,33 @@
+<!--
+    project/create_class_form.html
+    Author: Baiqi Jiang, baiqi@bu.edu 
+    Description: This is a html used for creating classes.
+    Date: April, 2021                           
+-->
+
+<head>
+    <title>Create A New Class</title>  <!-- Provide a title for this html -->
+</head>
+
+<h1><i>Warning: You are creating a new class.</i></h1>
+<h1><i>Any fictitious creation is prohibited.</i></h1>
+<hr>
+<style>
+    body {
+      background-color:yellow;
+    }
+</style>
+
+<form method="POST"><!-- HTTP POST to send data to the server -->
+    {% csrf_token %}
+    <!-- display the form context variable -->
+    <!-- {{form}} -->
+    <!-- {{form.as_p}}  paragraph style formating-->
+    <table>
+    {{form.as_table}}
+        <tr>
+            <td></td>  <!-- blank table content-->
+            <td><input type="submit" value="Create Class!"></td>
+        </tr>
+    </table>
+</form>
